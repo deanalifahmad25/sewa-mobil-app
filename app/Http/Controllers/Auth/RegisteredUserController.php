@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Traits\HasRoles;
 
 class RegisteredUserController extends Controller
 {
@@ -44,6 +46,9 @@ class RegisteredUserController extends Controller
             'address' => $request->address,
             'password' => Hash::make($request->password),
         ]);
+
+        $userRole = Role::firstOrCreate(['name' => 'user']);
+        $user->assignRole($userRole);
 
         event(new Registered($user));
 
