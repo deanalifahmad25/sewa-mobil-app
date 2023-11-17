@@ -251,3 +251,10 @@
           width: 100%;
         }
       }
+
+      .wrapper {
+        padding: 40px;
+        border-radius: 30px;
+        background: #ffffff;
+        box-shadow:  12px 12px 44px #d5d5d5, 22px 22px 44px #ffffff;
+      }

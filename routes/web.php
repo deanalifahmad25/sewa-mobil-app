@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VehicleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::middleware('auth', 'verified')->group(function () {
+    Route::get('/vehicles', [VehicleController::class, 'index'])->name('vehicle');
+});
+
 // Users
 Route::middleware('auth', 'verified', 'user')->group(function () {
     Route::get('/dashboard', function () {
@@ -35,7 +40,11 @@ Route::middleware('auth', 'verified', 'user')->group(function () {
 Route::middleware('auth', 'verified', 'admin')->name('admin.')->group(function () {
     Route::get('/admin-dashboard', function () {
         return view('admin.dashboard');
-    })->name('admin-dashboard');
+    })->name('dashboard');
+
+    Route::get('/vehicles/create', [VehicleController::class, 'create'])->name('vehicle.create');
+    Route::post('/vehicles/store', [VehicleController::class, 'store'])->name('vehicle.store');
+    Route::delete('/vehicles/delete/{id}', [VehicleController::class, 'destroy'])->name('vehicle.delete');
 });
 
 require __DIR__.'/auth.php';

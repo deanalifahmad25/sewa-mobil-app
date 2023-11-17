@@ -10,14 +10,21 @@
     <div class="pt-2 d-flex flex-column gap-5">
         <div class="menu p-0">
             <p>Utama</p>
-            <a href="#" class="item-menu active">
+            @if (Auth::user()->hasRole('admin'))
+                <x-side-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                    <i class="icon ic-stats"></i>
+                    {{ __('Dashboard') }}
+                </x-side-link>
+            @else
+                <x-side-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <i class="icon ic-stats"></i>
+                    {{ __('Dashboard') }}
+                </x-side-link>
+            @endif
+            <x-side-link :href="route('vehicle')" :active="request()->routeIs('vehicle')">
                 <i class="icon ic-stats"></i>
-                Overview
-            </a>
-            <a href="#" class="item-menu">
-                <i class="icon ic-trans"></i>
-                Manajemen Mobil
-            </a>
+                {{ __('Manajemen Mobil') }}
+            </x-side-link>
             <a href="#" class="item-menu">
                 <i class="icon ic-msg"></i>
                 Peminjaman Mobil
@@ -26,17 +33,10 @@
                 <i class="icon ic-stats"></i>
                 Pengembalian Mobil
             </a>
-            <a href="#" class="item-menu">
-                <i class="icon ic-account"></i>
-                Account
-            </a>
+
             {{-- <x-side-link :href="route('')" :active="request()->routeIs('')">
                 <i class="icon ic-stats"></i>
                 {{ __('Dashboard') }}
-            </x-side-link> --}}
-            {{-- <x-side-link :href="route('')" :active="request()->routeIs('')">
-                <i class="icon ic-stats"></i>
-                {{ __('Manajemen Mobil') }}
             </x-side-link> --}}
             {{-- <x-side-link :href="route('')" :active="request()->routeIs('')">
                 <i class="icon ic-account"></i>
