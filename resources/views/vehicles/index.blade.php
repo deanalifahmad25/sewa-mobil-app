@@ -64,10 +64,10 @@
                                                     Sewa
                                                 </button>
                                             @else
-                                                <button type="submit" class="btn btn-link btn-rounded btn-sm fw-bold"
+                                                <a href="{{ route('book.vehicle', $vehicle->id) }}" class="btn btn-link btn-rounded btn-sm fw-bold"
                                                     data-mdb-ripple-color="dark">
                                                     Sewa
-                                                </button>
+                                                </a>
                                             @endif
                                         @endif
                                     </td>

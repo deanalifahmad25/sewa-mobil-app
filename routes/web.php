@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\BookVehicleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,13 +28,16 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth', 'verified')->group(function () {
     Route::get('/vehicles', [VehicleController::class, 'index'])->name('vehicle');
+
+    Route::get('/vehicles/booking/{id}', [BookVehicleController::class, 'index'])->name('book.vehicle');
+    Route::post('/vehicles/booking', [BookVehicleController::class, 'store'])->name('book.store');
+    Route::get('/vehicles/return/{id}', [BookVehicleController::class, 'update'])->name('return.vehicle');
+    Route::post('/vehicles/return', [BookVehicleController::class, 'return'])->name('return.store');
 });
 
 // Users
 Route::middleware('auth', 'verified', 'user')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [VehicleController::class, 'show'])->name('dashboard');
 });
 
 // Admin

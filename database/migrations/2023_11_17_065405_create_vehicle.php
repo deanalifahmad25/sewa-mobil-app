@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('image_url');
             $table->string('plat_number');
             $table->string('charge');
-            $table->boolean('status')->default(false);
-            $table->foreignId('created_by');
+            $table->boolean('status');
+            $table->foreignId('created_by')->constrained('users');
             $table->timestamps();
         });
     }

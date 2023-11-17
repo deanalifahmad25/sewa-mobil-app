@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Vehicle;
+use App\Models\BookVehicle;
 use App\Models\User;
 
 class VehicleController extends Controller
@@ -31,7 +33,11 @@ class VehicleController extends Controller
 
     public function show(Vehicle $vehicle)
     {
-        //
+        $userId = Auth::user()->id;
+
+        $vehicles = BookVehicle::where('customer_id', $userId)->where('return_date', null)->with('vehicle')->get();
+
+        return view('dashboard', compact('vehicles'));
     }
 
     public function edit(Vehicle $vehicle)

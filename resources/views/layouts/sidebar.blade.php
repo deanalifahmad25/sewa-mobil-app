@@ -25,24 +25,7 @@
                 <i class="icon ic-stats"></i>
                 {{ __('Manajemen Mobil') }}
             </x-side-link>
-            <a href="#" class="item-menu">
-                <i class="icon ic-msg"></i>
-                Peminjaman Mobil
-            </a>
-            <a href="#" class="item-menu">
-                <i class="icon ic-stats"></i>
-                Pengembalian Mobil
-            </a>
-
             {{-- <x-side-link :href="route('')" :active="request()->routeIs('')">
-                <i class="icon ic-stats"></i>
-                {{ __('Dashboard') }}
-            </x-side-link> --}}
-            {{-- <x-side-link :href="route('')" :active="request()->routeIs('')">
-                <i class="icon ic-account"></i>
-                {{ __('Peminjaman Mobil') }}
-            </x-side-link>
-            <x-side-link :href="route('')" :active="request()->routeIs('')">
                 <i class="icon ic-trans"></i>
                 {{ __('Pengembalian Mobil') }}
             </x-side-link> --}}

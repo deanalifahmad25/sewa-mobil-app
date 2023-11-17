@@ -14,7 +14,7 @@ class Vehicle extends Model
 
     protected $fillable = ['name', 'model', 'image_url', 'plat_number', 'charge', 'created_by'];
 
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
     }
