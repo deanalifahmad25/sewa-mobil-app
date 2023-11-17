@@ -5,16 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Vehicle;
 use App\Models\BookVehicle;
+use Carbon\Carbon;
 
 class BookVehicleController extends Controller
 {
-    public function index($id) {
+    public function index($id)
+    {
         $vehicle = Vehicle::where('id', $id)->first();
 
         return view('book_vehicles.create', compact('vehicle'));
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $request->validate([
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
@@ -39,29 +42,33 @@ class BookVehicleController extends Controller
         return redirect()->route('vehicle');
     }
 
-    public function update($id) {
+    public function update($id)
+    {
         $vehicle = BookVehicle::where('customer_id', $id)->first();
 
         return view('return_vehicles.create', compact('vehicle'));
     }
 
-    public function return(Request $request) {
+    public function return(Request $request)
+    {
         $request->validate([
             'plat_number' => 'required',
         ]);
 
         $vehicle = Vehicle::where('plat_number', $request->plat_number)->first();
+
         if ($vehicle->status == true) {
-            $booking = BookVehicle::where('vehicle_id', $vehicle->id)->whereNull('return_date')->with('vehicle')->first();
+            $booking = BookVehicle::where('vehicle_id', $vehicle->id)
+                ->whereNull('return_date')
+                ->with('vehicle')
+                ->first();
 
             $dailyRate = $vehicle->charge;
             $startDate = $booking->start_date;
-            $endDate = $booking->start_date;
+            $endDate = Carbon::parse($booking->end_date);
 
             $daysRented = $endDate->diffInDays($startDate);
             $totalCost = $daysRented * $dailyRate;
-
-            dd($totalCost);
 
             $booking->update([
                 'return_date' => $endDate,
@@ -70,7 +77,7 @@ class BookVehicleController extends Controller
 
             Vehicle::where('id', $vehicle->id)->update(['status' => false]);
 
-            return view('return_vehicles.show', compact('booking', ''));
+            return view('return_vehicles.show', compact('booking', 'daysRented', 'totalCost'));
         } else {
             return redirect()->back();
         }
