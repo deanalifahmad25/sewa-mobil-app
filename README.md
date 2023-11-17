@@ -1,3 +1,26 @@
+## Akun Admin:
+Email: admin1@gmail.test
+Password: secret123
+
+Akun User bisa coba dari fitur registrasi
+## Cara run project
+Download lalu ekstrak, generate .env terlebih dahulu :)
+Setelah itu pada terminal jalankan:
+
+```bash
+composer install
+# lalu
+php artisan migrate
+# lalu
+php artisan db:seed --class=UserSeeder
+# lalu
+npm install
+# lalu
+php artisan serve
+# lalu
+npm run dev
+```
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
