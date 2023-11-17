@@ -12,13 +12,13 @@
                     </div>
                 </div>
                 <div class="col-xl-4 col-12 card balance">
-                    <h2>{{ $booking->start_date }}</h2>
+                    <h2>{{ date('d F Y', strtotime($booking->start_date)) }}</h2>
                     <div>
                         <p class="m-0 fw-bold">Tanggal Mulai</p>
                     </div>
                 </div>
                 <div class="col-xl-4 col-12 card balance">
-                    <h2>{{ $booking->end_date }}</h2>
+                    <h2>{{ date('d F Y', strtotime($booking->end_date)) }}</h2>
                     <div>
                         <p class="m-0 fw-bold">Tanggal Selesai</p>
                     </div>
