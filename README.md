@@ -1,8 +1,19 @@
 ## Akun Admin:
-Email: admin1@gmail.test
-Password: secret123
+Email: admin1@gmail.test <br/>
+Password: secret123 <br/>
 
-Akun User bisa coba dari fitur registrasi
+Akun User bisa coba dari fitur registrasi <br/>
+
+## Fitur Admin
+- Login
+- Manajemen Mobil (CRUD)
+
+## Fitur User
+- Registrasi Pengguna
+- Manajemen Mobil
+- Peminjaman Mobil
+- Pengembalian Mobil
+- Login
 ## Cara run project
 Download lalu ekstrak, generate .env terlebih dahulu :)
 Setelah itu pada terminal jalankan:
