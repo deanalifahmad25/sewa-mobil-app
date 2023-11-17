@@ -3,6 +3,7 @@ Email: admin1@gmail.test
 Password: secret123
 
 Akun User bisa coba dari fitur registrasi
+## Cara run project
 Download lalu ekstrak, generate .env terlebih dahulu :)
 Setelah itu pada terminal jalankan:
 
