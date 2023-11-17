@@ -32,6 +32,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/vehicles/booking/{id}', [BookVehicleController::class, 'index'])->name('book.vehicle');
     Route::post('/vehicles/booking', [BookVehicleController::class, 'store'])->name('book.store');
     Route::get('/vehicles/return/{id}', [BookVehicleController::class, 'update'])->name('return.vehicle');
+    Route::get('/vehicles/returned/{id}', [BookVehicleController::class, 'show'])->name('show.return.vehicle');
     Route::post('/vehicles/return', [BookVehicleController::class, 'return'])->name('return.store');
 });
 

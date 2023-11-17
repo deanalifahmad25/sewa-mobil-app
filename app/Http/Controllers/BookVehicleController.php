@@ -52,14 +52,16 @@ class BookVehicleController extends Controller
 
         $vehicle = Vehicle::where('plat_number', $request->plat_number)->first();
         if ($vehicle->status == true) {
-            $booking = BookVehicle::where('vehicle_id', $vehicle->id)->whereNull('return_date')->first();
+            $booking = BookVehicle::where('vehicle_id', $vehicle->id)->whereNull('return_date')->with('vehicle')->first();
 
-            $dailyRate = $vehicle->daily_rate;
+            $dailyRate = $vehicle->charge;
             $startDate = $booking->start_date;
-            $endDate = now();
+            $endDate = $booking->start_date;
 
             $daysRented = $endDate->diffInDays($startDate);
             $totalCost = $daysRented * $dailyRate;
+
+            dd($totalCost);
 
             $booking->update([
                 'return_date' => $endDate,
@@ -68,9 +70,8 @@ class BookVehicleController extends Controller
 
             Vehicle::where('id', $vehicle->id)->update(['status' => false]);
 
-            return redirect()->route('vehicle');
+            return view('return_vehicles.show', compact('booking', ''));
         } else {
-            // Mobil sedang tidak dipinjam
             return redirect()->back();
         }
     }
